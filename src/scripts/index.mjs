@@ -29,4 +29,36 @@ jsonData.forEach((item) => {
     }
 });
 
-console.log(formated);
+function generateChildren(children) {
+    const childrens = children.map((item) => {
+        return `
+            <li>
+                <p>${
+                    item.children?.length
+                        ? item.text + "<span>&rsaquo;</span>"
+                        : item.text
+                }</p>
+                ${item.children?.length ? generateChildren(item.children) : ""}
+            </li>
+        `;
+    });
+
+    const line = `
+        <ul>
+            ${childrens.join("")}
+        </ul>
+    `;
+
+    return line;
+}
+
+function generateNav() {
+    const nav = document.querySelector("#nav");
+
+    nav.innerHTML = `
+        <p>Categorias</p>
+        ${generateChildren(formated)}
+    `;
+}
+
+generateNav();
