@@ -56,7 +56,7 @@ function generateNav() {
     const nav = document.querySelector("#nav");
 
     nav.innerHTML = `
-        <p>Categorias</p>
+        <p>Categorias <span>&rsaquo;</span></p>
         ${generateChildren(formated)}
     `;
 }
